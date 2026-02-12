@@ -4,12 +4,14 @@ import { button } from "@mui/material";
 import orangeCatSitting from "./images/orangeCatSitting.png";
 import dirtyCat from "./images/dirtyCat.png";
 
-const CAT_SIZE = 100;
+const CAT_SIZE = 140;
 
 function App(props) {
 
   const areaRef = useRef(null);
+  const [yesCatSize, setYesCatSize] = useState(140);
   const [noClickCounts, setNoClickCounts] = useState(0)
+  const [yesPos, setYesPos] = useState({ x: 10, y: 140 });
   const [noPos, setNoPos] = useState({ x: 200, y: 140 });
   const [noFacing, setNoFacing] = useState("right"); // "left" | "right"
   const [yesText, setYesText] = useState("");
@@ -35,15 +37,17 @@ function App(props) {
     const newY = Math.floor(Math.random() * (maxY - padding + 1)) + padding;
 
     // Determine direction based on horizontal movement
-    setNoPos({ x: newX, y: newY });
+    //setNoPos({ x: newX, y: newY });
     setNoText(noTextOptions[Math.floor(Math.random() * noTextOptions.length)]);
     setYesText(yesTextOptions[Math.floor(Math.random() * yesTextOptions.length)]);
     setSubText(subtextOptions[Math.floor(Math.random() * subtextOptions.length)]);
-
+    //setYesCatSize(yesCatSize + 10);
+    //setYesPos({ x: yesPos.x - 10, y: yesPos.y - 10 }); // Move yes cat slightly to the right
+    /*
     setTimeout(() => {
       setNoText("");
     }, 1500);
-
+    */
     setNoClickCounts(noClickCounts + 1);
   }
 
@@ -57,12 +61,6 @@ function App(props) {
         <br />
         pick a cat 🐱 for your answer
       </div>
-        {
-          noClickCounts > 0 &&
-          <div className={props.fixedHeightdiv} style={{ p: 1, mt: 1, textAlign: 'center',  fontStyle: 'italic' }}>
-            {subText}
-          </div>
-        }
       <div
         ref={areaRef}
         style={{
@@ -71,6 +69,8 @@ function App(props) {
           marginTop: 100,
           borderRadius: 12,
           overflow: "visible", // changed from "hidden" to "visible"
+          left: yesPos.x,
+          top: yesPos.y
         }}
 
       >
@@ -111,7 +111,7 @@ function App(props) {
               />
             </div>
           )}
-          <img height={CAT_SIZE} width={CAT_SIZE} src={orangeCatSitting} alt="Yes Cat" />
+          <img height={yesCatSize} width={yesCatSize} src={orangeCatSitting} alt="Yes Cat" />
           <button
             style={{ fontSize: 30, marginTop: 1, backgroundColor: '#d13333', borderRadius: 4, px: 3, py: 1, color: '#ffffff'}}
             onClick={() => alert("Yay! Happy Valentine's Day! ❤️")}
@@ -176,7 +176,13 @@ function App(props) {
               </button>
           </div>
       </div>
-    </div>
+      {
+          noClickCounts > 0 &&
+          <div className={props.fixedHeightdiv} style={{ p: 1, mt: 1, textAlign: 'center',  fontStyle: 'italic' }}>
+            {subText}
+          </div>
+        }
+      </div>
       </header>
     </div>
   );
