@@ -1,6 +1,5 @@
 import './App.css';
 import { useRef, useState } from "react";
-import { button } from "@mui/material";
 import orangeCatSitting from "./images/orangeCatSitting.png";
 import dirtyCat from "./images/dirtyCat.png";
 
