@@ -4,6 +4,7 @@ import orangeCatSitting from "./images/orangeCatSitting.png";
 import dirtyCat from "./images/dirtyCat.png";
 import catParty from "./images/catParty.gif";
 import catHissing from "./images/catHissing.png";
+import loveLetter from "./images/loveLetter.gif";
 
 const CAT_SIZE = 140;
 
@@ -17,14 +18,17 @@ function App(props) {
   const [noText, setNoText] = useState("");
   const [subText, setSubText] = useState("");
   const [showPartyCat, setShowPartyCat] = useState(false);
+  const [showNextScreen, setShowNextScreen] = useState(false);
   const [shakeYes, setShakeYes] = useState(false);
+
+  const [showScreen, setShowScreen] = useState("home"); // options: home, partyCat, loveLetter, openedLetter
 
   const yesTextOptions = ["Pick me!", "Over here!", "Meow pick me!"];
   const noTextOptions = ["go away", "i'm actually gonna bite you", "HISS", "leave me alone", "meow I hate you", "f off"];
   const subtextOptions = ["(just pick yes)", "(why tho?)", "(no is not the answer)", "(pls pick yes)"];
 
   const handleYesCatClick = (e) => {
-    setShowPartyCat(true);
+    setShowScreen("partyCat");
   };
 
   const handleNoCatClick = () => {
@@ -66,14 +70,35 @@ function App(props) {
     <div className="App">
       <div style={{ backgroundColor: "#f3b4b4", height: "100vh", width: '100%', position: "relative", overflow: "hidden" }}>
         <div style={{ textAlign: 'center', backgroundColor: '#ffffff', color: 'black', fontSize: 20, fontWeight: 'bold', padding: 30, margin: 30, borderRadius: 5}}>
-          dana, will you be my valentine? <span style={{ fontSize: "1.5rem" }}>❤️</span>
-          <br /><br />
-          pick a cat 🐱 for your answer
+          {
+            showScreen === "home" ?
+            <div>
+              dana, will you be my valentine? <span style={{ fontSize: "1.5rem" }}>❤️</span>
+              <br /><br />
+              pick a cat 🐱 for your answer
+            </div>
+            :
+            showScreen === "loveLetter" ?
+            <p>open the letter! <span style={{ fontSize: "1.5rem" }}>❤️</span></p>
+            :
+            <p style={{fontSize: 30}}>YAAAYYYYY ❤️</p>
+          }
         </div>
         {
-          showPartyCat ?
+          showScreen === "loveLetter" && (
+            <div style={{ textAlign: 'center', color: 'black', fontSize: 20, fontWeight: 'bold', borderRadius: 5}}>
+              <img
+                height={200}
+                width={200}
+                src={loveLetter}
+                onClick={() => setShowScreen("openedLetter")}
+              />
+            </div>
+          )
+        }
+        {
+          showScreen === "partyCat" &&
           <div>
-            <p style={{fontSize: 30, color: '#ffffff'}}>YAAAYYYYY</p>
             <img
                 height={'50%'}
                 width={'50%'}
@@ -83,13 +108,21 @@ function App(props) {
             <br />
             <br />
             <button
-              style={{ fontSize: 30, marginTop: 1, backgroundColor: '#d13333', borderRadius: 4, padding: 20, color: '#ffffff'}}
-              onClick={handleYesCatClick}
+              style={{ fontSize: 30, marginTop: 1, backgroundColor: '#d13333', marginRight: 20, borderRadius: 4, padding: 20, color: '#ffffff'}}
+              onClick={() => setShowScreen("home")}
             >
-              wait, there's more...
+              go back
+            </button>
+            <button
+              style={{ fontSize: 30, marginTop: 1, backgroundColor: '#d13333', borderRadius: 4, padding: 20, color: '#ffffff'}}
+              onClick={() => setShowScreen("loveLetter")}
+            >
+              wait, click for more...
             </button>
           </div>
-          :
+        }
+        {
+          showScreen === "home" &&
           <div>
             {noClickCounts > 0 && (
               <div className={props.fixedHeightdiv} style={{ p: 1, mt: 1, textAlign: 'center', color: 'white', fontStyle: 'italic' }}>
@@ -172,6 +205,13 @@ function App(props) {
               </div>
             </div>
           </div>
+        }
+        {
+          showScreen === "openedLetter" && (
+            <div style={{ fontSize: 15, backgroundColor: '#ffffff', textAlign: 'center', margin: 30, padding: 30, borderRadius: 5}}>
+              dana, i love you so much and i'm so excited to get engaged this year.
+            </div>
+          )
         }
       </div>
     </div>
