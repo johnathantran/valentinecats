@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/valentinecats/static/css/main.f855e6bc.css",
+    "main.js": "/valentinecats/static/js/main.45115fa6.js",
+    "static/js/453.fd2f0c4a.chunk.js": "/valentinecats/static/js/453.fd2f0c4a.chunk.js",
+    "static/media/dirtyCat.png": "/valentinecats/static/media/dirtyCat.47b114e78576b4116195.png",
+    "static/media/orangeCatSitting.png": "/valentinecats/static/media/orangeCatSitting.1e675fedb02dc8325c54.png",
+    "index.html": "/valentinecats/index.html",
+    "main.f855e6bc.css.map": "/valentinecats/static/css/main.f855e6bc.css.map",
+    "main.45115fa6.js.map": "/valentinecats/static/js/main.45115fa6.js.map",
+    "453.fd2f0c4a.chunk.js.map": "/valentinecats/static/js/453.fd2f0c4a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.45115fa6.js"
+  ]
+}
