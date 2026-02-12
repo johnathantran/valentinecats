@@ -22,18 +22,7 @@ function App(props) {
   const subtextOptions = ["(just pick yes)", "(why tho?)", "(no is not the answer)", "(pls pick yes)"];
 
 
-  const moveNoCat = () => {
-
-    const area = areaRef.current;
-
-    if (!area) return;
- 
-    const rect = area.getBoundingClientRect();
-    const padding = 10;
-    const maxX = Math.max(padding, rect.width - CAT_SIZE - padding);
-    const maxY = Math.max(padding, rect.height - (CAT_SIZE + 60) - padding);
-    const newX = Math.floor(Math.random() * (maxX - padding + 1)) + padding;
-    const newY = Math.floor(Math.random() * (maxY - padding + 1)) + padding;
+  const handleNoCatClick = () => {
 
     // Determine direction based on horizontal movement
     //setNoPos({ x: newX, y: newY });
@@ -42,19 +31,20 @@ function App(props) {
     setSubText(subtextOptions[Math.floor(Math.random() * subtextOptions.length)]);
     //setYesCatSize(yesCatSize + 10);
     //setYesPos({ x: yesPos.x - 10, y: yesPos.y - 10 }); // Move yes cat slightly to the right
-    /*
+    
     setTimeout(() => {
+      setYesText("");
       setNoText("");
-    }, 1500);
-    */
+    }, 3000);
+    
     setNoClickCounts(noClickCounts + 1);
   }
 
   return (
     <div className="App">
       <header className="App-header">
-      <div maxWidth="xl" style={{ backgroundColor: "#f3b4b4", height: "100vh", position: "relative", overflow: "hidden" }}>
-      <div className={props.fixedHeightdiv} style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold', padding: 30, marginTop: 1 }}>
+      <div style={{ backgroundColor: "#f3b4b4", height: "100vh", width: '100%', position: "relative", overflow: "hidden" }}>
+      <div style={{ textAlign: 'center', backgroundColor: '#ffffff', color: 'black', fontSize: 20, fontWeight: 'bold', padding: 30, margin: 30, borderRadius: 5}}>
         dana, will you be my valentine? <span style={{ fontSize: "1.5rem" }}>❤️</span>
         <br />
         <br />
@@ -67,20 +57,44 @@ function App(props) {
           height: 520,
           marginTop: 100,
           borderRadius: 12,
-          overflow: "visible", // changed from "hidden" to "visible"
-          left: yesPos.x,
-          top: yesPos.y
+          display: "flex",
+          justifyContent: "center", // Center the cats horizontally
+          alignItems: "center" // Center the cats vertically
         }}
-
       >
-        <div style={{ position: "absolute", left: 80, top: 120, display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           {yesText && (
+          <div
+            style={{
+              minWidth: 60,
+              maxWidth: 120,
+              padding: "8px 12px",
+              background: "#fff",
+              borderRadius: 16,
+              border: "2px solid #eee",
+              divShadow: "0 2px 8px rgba(0,0,0,0.08)",
+              fontSize: 18,
+              color: "#333",
+              zIndex: 2,
+              whiteSpace: "pre-line"
+            }}
+          >
+            {yesText}
+          </div>
+          )}
+          <img height={yesCatSize} width={yesCatSize} src={orangeCatSitting} alt="Yes Cat" />
+          <button
+            style={{ fontSize: 30, marginTop: 1, backgroundColor: '#d13333', borderRadius: 4, px: 3, py: 1, color: '#ffffff'}}
+            onClick={() => alert("Yay! Happy Valentine's Day! ❤️")}
+          >
+            Yes
+          </button>
+        </div>
+
+        <div style={{ display: "flex", marginLeft: 50, flexDirection: "column", alignItems: "center" }}>
+          {noText && (
             <div
-              style={{
-                position: "absolute",
-                left: "50%",
-                bottom: CAT_SIZE + 80, // bumped up from CAT_SIZE + 24
-                transform: "translateX(-50%)",
+               style={{
                 minWidth: 60,
                 maxWidth: 120,
                 padding: "8px 12px",
@@ -94,86 +108,22 @@ function App(props) {
                 whiteSpace: "pre-line"
               }}
             >
-              {yesText}
-              <div
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  top: "100%",
-                  transform: "translateX(-50%)",
-                  width: 0,
-                  height: 0,
-                  borderLeft: "8px solid transparent",
-                  borderRight: "8px solid transparent",
-                  borderTop: "12px solid #fff",
-                }}
-              />
+              {noText}
             </div>
           )}
-          <img height={yesCatSize} width={yesCatSize} src={orangeCatSitting} alt="Yes Cat" />
+          <img
+            height={CAT_SIZE}
+            width={CAT_SIZE}
+            src={dirtyCat}
+            alt="No Cat"
+          />
           <button
-            style={{ fontSize: 30, marginTop: 1, backgroundColor: '#d13333', borderRadius: 4, px: 3, py: 1, color: '#ffffff'}}
-            onClick={() => alert("Yay! Happy Valentine's Day! ❤️")}
+            style={{ fontSize: 15, marginTop: 1, backgroundColor: '#adabab', borderRadius: 4, px: 3, py: 1, color: '#ffffff'}}
+            onClick={handleNoCatClick}
           >
-            Yes
+            No
           </button>
         </div>
-
-        <div style={{
-          position: "relative", display: "flex", flexDirection: "column", alignItems: "center", position: "absolute",
-          left: noPos.x,
-          top: noPos.y
-          }}
-        >
-            {noText && (
-              <div
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  bottom: CAT_SIZE + 80, // bumped up from CAT_SIZE + 24
-                  transform: "translateX(-50%)",
-                  minWidth: 60,
-                  maxWidth: 120,
-                  padding: "8px 12px",
-                  background: "#fff",
-                  borderRadius: 16,
-                  border: "2px solid #eee",
-                  divShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                  fontSize: 18,
-                  color: "#333",
-                  zIndex: 2,
-                  whiteSpace: "pre-line",
-                }}
-              >
-                {noText}
-                <div
-                  style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: "100%",
-                    transform: "translateX(-50%)",
-                    width: 0,
-                    height: 0,
-                    borderLeft: "8px solid transparent",
-                    borderRight: "8px solid transparent",
-                    borderTop: "12px solid #fff",
-                  }}
-                />
-              </div>
-            )}
-            <img
-              height={CAT_SIZE}
-              width={CAT_SIZE}
-              src={dirtyCat}
-              alt="No Cat"
-            />
-              <button
-                style={{ fontSize: 15, marginTop: 1, backgroundColor: '#adabab', borderRadius: 4, px: 3, py: 1, color: '#ffffff'}}
-                onClick={moveNoCat}
-              >
-                No
-              </button>
-          </div>
       </div>
       {
           noClickCounts > 0 &&
