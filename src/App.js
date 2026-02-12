@@ -29,7 +29,7 @@ function App(props) {
   const [subTextIndex, setSubTextIndex] = useState(0);
 
   const yesTextOptions = ["Pick me!", "Over here!", "Meow pick me!"];
-  const noTextOptions = ["go away", "leave me alone", "HISS", "meow I hate you", "f off", "i'm literally gonna bite you"];
+  const noTextOptions = ["HISS", "meow I hate you", "f off", "i'm literally gonna bite you"];
   const subtextOptions = ["(just pick yes)", "(no is not the answer)", "(pls pick yes)", "(girl quit playin)"];
 
   // measure width of the play area
