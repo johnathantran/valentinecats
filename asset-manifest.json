@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/valentinecats/static/css/main.051ca0ff.css",
+    "main.js": "/valentinecats/static/js/main.3cdfb8a2.js",
+    "static/js/453.fd2f0c4a.chunk.js": "/valentinecats/static/js/453.fd2f0c4a.chunk.js",
+    "static/media/catParty.gif": "/valentinecats/static/media/catParty.7352b769440a0c2617a2.gif",
+    "static/media/dirtyCat.png": "/valentinecats/static/media/dirtyCat.47b114e78576b4116195.png",
+    "static/media/catHissing.png": "/valentinecats/static/media/catHissing.bc56abe373a0b0aae3ed.png",
+    "static/media/orangeCatSitting.png": "/valentinecats/static/media/orangeCatSitting.1e675fedb02dc8325c54.png",
+    "static/media/loveLetter.gif": "/valentinecats/static/media/loveLetter.d054a84735b8ec647d85.gif",
+    "index.html": "/valentinecats/index.html",
+    "main.051ca0ff.css.map": "/valentinecats/static/css/main.051ca0ff.css.map",
+    "main.3cdfb8a2.js.map": "/valentinecats/static/js/main.3cdfb8a2.js.map",
+    "453.fd2f0c4a.chunk.js.map": "/valentinecats/static/js/453.fd2f0c4a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.051ca0ff.css",
+    "static/js/main.3cdfb8a2.js"
+  ]
+}
