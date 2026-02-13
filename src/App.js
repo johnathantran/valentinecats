@@ -5,6 +5,7 @@ import dirtyCat from "./images/dirtyCat.png";
 import catParty from "./images/catParty.gif";
 import catHissing from "./images/catHissing.png";
 import loveLetter from "./images/loveLetter.gif";
+import us from "./images/us.jpg";
 
 const CAT_SIZE = 140;
 
@@ -120,7 +121,10 @@ function App(props) {
             </div>
           ) : showScreen === "loveLetter" ? (
             <p>open the letter! <span style={{ fontSize: "1.5rem" }}>❤️</span></p>
-          ) : (
+          ) : showScreen === "openedLetter" ? (
+            <p>ty for being my valentine<span style={{ fontSize: "1.5rem" }}>❤️</span></p>
+          )
+          : (
             <p style={{ fontSize: 30 }}>YAAAYYYYY ❤️</p>
           )}
         </div>
@@ -251,6 +255,12 @@ function App(props) {
 
         {showScreen === "openedLetter" && (
           <div style={{ fontSize: 15, backgroundColor: '#ffffff', textAlign: 'center', margin: 30, padding: 30, borderRadius: 5 }}>
+            <img
+              width={300}
+              src={us}
+              alt="us"
+            />
+            <br />
             happy valentines day!
             <br /><br />
             dana, i love you so much and i'm so excited to get engaged this year. its a big year for us and i wouldn't want to do it
