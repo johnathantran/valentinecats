@@ -111,7 +111,17 @@ function App(props) {
 
   return (
     <div className="App">
-      <div style={{ backgroundColor: "#f3b4b4", height: "100vh", width: '100%', position: "relative", overflow: "hidden" }}>
+      <div
+        style={{
+          backgroundColor: "#f3b4b4",
+          minHeight: "100dvh",     // better than 100vh on mobile
+          width: "100%",
+          position: "relative",
+          overflowY: "auto",       // allow vertical scroll
+          overflowX: "hidden",     // prevent sideways scroll
+          WebkitOverflowScrolling: "touch", // smoother iOS scrolling
+        }}
+      >
         <div style={{ textAlign: 'center', backgroundColor: '#ffffff', color: 'black', fontSize: 20, fontWeight: 'bold', padding: 30, margin: 30, borderRadius: 5 }}>
           {showScreen === "home" ? (
             <div>
@@ -256,12 +266,13 @@ function App(props) {
         {showScreen === "openedLetter" && (
           <div style={{ fontSize: 15, backgroundColor: '#ffffff', textAlign: 'center', margin: 30, padding: 30, borderRadius: 5 }}>
             <img
-              width={300}
+              width={'90%'}
               src={us}
               alt="us"
+              style={{ borderRadius: 12 }}
             />
             <br />
-            happy valentines day!
+            happy valentines day! ❤️
             <br /><br />
             dana, i love you so much and i'm so excited to get engaged this year. its a big year for us and i wouldn't want to do it
             with anyone else but you. i love the life we've built together. little things like coming home to you and how excited you are
